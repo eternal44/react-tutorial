@@ -2,9 +2,21 @@
 import React, { Component } from 'react';
 
 class SearchBar extends Component {
+  constructor(props){
+    // 'super' calls parent methods
+    super(props);
+
+    this.state = { term: '' }
+  }
+
   render() {
     // 'onChange' is an event listener for any changes
-    return <input onChange={event => console.log(event.target.value)} />;
+    return (
+      <div>
+        // sets state on event (ie: typing)
+        <input onChange={event => this.setState({ term: event.target.value })} />
+      </div>
+    );
   }
 }
 
