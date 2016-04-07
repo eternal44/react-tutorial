@@ -13,8 +13,9 @@ class SearchBar extends Component {
     // 'onChange' is an event listener for any changes
     return (
       <div>
-        // sets state on event (ie: typing)
-        <input onChange={event => this.setState({ term: event.target.value })} />
+        <input 
+          value={ this.state.term }
+          onChange={event => this.setState({ term: event.target.value })} />
       </div>
     );
   }
