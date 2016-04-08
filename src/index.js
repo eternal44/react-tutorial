@@ -17,7 +17,12 @@ class App extends Component {
       selectedVideo: null
     };
 
-    YTSearch({key: API_KEY, term: 'rock climbing'}, (videos) => {
+    this.videoSearch('rock climbing');
+  }
+
+  videoSearch(term){
+    YTSearch({key: API_KEY, term: term}, (videos) => {
+
       // setting selectedVideo to 1st video so it comes up
       // when we first load the app
       this.setState({ 
@@ -30,7 +35,7 @@ class App extends Component {
   render(){
     return (
       <div>
-        <SearchBar />
+        <SearchBar onSearchTermChange={term => this.videoSearch(term)} />
         <VideoDetail video={this.state.selectedVideo}/>
         <VideoList
           onVideoSelect={selectedVideo => this.setState({selectedVideo})}
@@ -41,4 +46,4 @@ class App extends Component {
 }
 
 // Take this component's generated HTML and put it in the DOM
-ReactDOM.render(<App />, document.querySelector('.container'));
+RaeactDOM.render(<App />, document.querySelector('.container'));
