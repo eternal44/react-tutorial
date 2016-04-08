@@ -12,11 +12,18 @@ class App extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { videos: [] };
+    this.state = {
+      videos: [],
+      selectedVideo: null
+    };
 
     YTSearch({key: API_KEY, term: 'rock climbing'}, (videos) => {
-      // '{ videos }' is transpiled to '{videos: videos}'
-      this.setState({ videos });
+      // setting selectedVideo to 1st video so it comes up
+      // when we first load the app
+      this.setState({ 
+        videos: videos,
+        selectedVideo: videos[0]
+      });
     });
   }
 
@@ -24,7 +31,7 @@ class App extends Component {
     return (
       <div>
         <SearchBar />
-        <VideoDetail video={this.state.videos[0]}/>
+        <VideoDetail video={this.state.selectedVideo}/>
         <VideoList videos={this.state.videos} />
       </div>
     );
